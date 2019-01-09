@@ -28,7 +28,6 @@ export default {
 
 @media only screen and (max-width: 900px) {
     #next-round{
-        padding: 10px;
         margin-top: 40vh;
     }
     .header{

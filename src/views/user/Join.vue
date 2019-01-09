@@ -5,9 +5,11 @@
     </div>
     <div class="mobile-view">
         <div class="before-joining-game">
-            <input id="room-code" placeholder="Room Code"><br>
-            <input id="username" placeholder="Name"><br>
-            <button id="join-button" v-on:click="join">JOIN</button>
+            <form>
+                <input id="room-code" placeholder="Room Code"><br>
+                <input id="username" placeholder="Name"><br>
+                <button v-on:click.prevent="join">JOIN</button>
+            </form>
         </div>
     </div>
   </div>
@@ -16,14 +18,19 @@
 <script>
 
 export default {
-    name: 'Join',
-    props: {
-        msg: String
+    data(){
+        return{
+
+        }
     },
     methods: {
-        join: function(event) {
-            var rooms = axios.get('http://localhost:8080/rooms')
-            alert(rooms);
+        join: function(){
+            console.log('player added');
+            Vue.http.get('localhost:8080/rooms').then(response => {
+                console.log(response.body);
+            }, response =>{
+                console.log('wrong');
+            });
         }
     }
 };

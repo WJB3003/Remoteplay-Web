@@ -1,41 +1,23 @@
 <template>
-  <div class="host-view">
-
-    <!-- PART ONE -->
-    <div class="pre-making-room hidden">
-    <button>Make Room</button>
-    </div>
-
-    <!-- PART TWO -->
-    <div class="after-making-room">
-        <div class="room-code-header">
-        ROOM CODE:
-        <div class="room-code">
-            A1B2
+    <div class="game">
+        <!-- PART THREE -->
+        <div class="before-submitted-cards">
+            <div class="question-card card">
+                This is the body of a card that would need an answer to fill in the blank here ___________.
+            </div>
         </div>
     </div>
-
-    <div class="users">
-        <ul style="list-style: none;">
-            <li>William</li>
-            <li>Mike</li>
-            <li>Eva</li>
-            <li>Warren</li>
-        </ul>
-    </div>
-    </div>
-
-  </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Room',
+    name: 'Game',
     props: {
         msg: String
     },
 };
+
 </script>
 
 <style>
@@ -43,21 +25,12 @@ export default {
         margin: 0%;
         font-size: 25px;
     }
-
-    .room-code-header{
-        padding-top: 5px;
-        background-color: #FFB700;
-        color:white;
-    }
-
     .hidden{
         display: none;
     }
-
     ul{
         padding:0%;
     }
-
     .card{
         margin: 10px;
         margin-bottom: 5px;
@@ -66,23 +39,19 @@ export default {
         padding: 10px;
         border: 1px solid black;
     }
-
     .question-card{
-        background-color: black;
+        background-color: #FF4519;
         color: white;
         padding: 10px;
     }
-
     .answer-card{
         background-color: white;
         color: black;
     }
-
     .displayed-cards{
         display: flex;
         flex-wrap: wrap;
     }
-
     .winner{
         margin-top: 43vh;
     }

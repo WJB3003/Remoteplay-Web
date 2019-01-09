@@ -1,7 +1,7 @@
 <template>
     <div class="waiting-to-start-game">
         <div class="waiting-header">
-            A1B2
+            ROOM CODE: A1B2
         </div>
         <button>EVERYONE'S IN</button>
     </div>
@@ -29,58 +29,26 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    .display-winner{
-        margin-top: 40vh;
-    }
-    .before-all-cards-submitted{
-        padding: 5px;
-        background-color:black;
-        color: white;
-    }
-    .cards button{
-        width: 100%;
-        height: 100vh;
-    }
     .waiting-header{
-        background-color: black;
+        background-color: #FFB700;
         color:white;
-        margin-bottom: 45vh
-    }
-
-    .before-joining-game{
-        height: 100vh;
-        margin-top: 40vh;
+        margin-bottom: 45vh;
     }
     .non-mobile-view{
         display: none;
     }
-
     body{
         max-height: 100vh;
         padding: 0%;
         margin: 0%;
         font-size: 25px;
     }
-    .before-joining-game{
-        height: 100%;
-        width: 100%;
-    }
     .hidden{
         display: none;
     }
-    .cards{
-        height: 100%;
-        justify-content: space-between;
-    }
-    input{
-        text-align: center;
-        width: 90%;
-        font-size: 25px;
-        border: 1px solid lightgray;
-    }
     button{
         width: 90%;
-        background-color:black;
+        background-color:#0293D2;
         color:white;
         border: 1px solid lightgray;
         font-size: 25px;

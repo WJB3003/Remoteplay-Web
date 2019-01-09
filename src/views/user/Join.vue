@@ -7,7 +7,7 @@
         <div class="before-joining-game">
             <input id="room-code" placeholder="Room Code"><br>
             <input id="username" placeholder="Name"><br>
-            <button>JOIN</button>
+            <button id="join-button" v-on:click="join">JOIN</button>
         </div>
     </div>
   </div>
@@ -20,6 +20,12 @@ export default {
     props: {
         msg: String
     },
+    methods: {
+        join: function(event) {
+            var rooms = axios.get('http://localhost:8080/rooms')
+            alert(rooms);
+        }
+    }
 };
 
 </script>
@@ -35,24 +41,11 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    .display-winner{
-        margin-top: 40vh;
-    }
-    .before-all-cards-submitted{
-        padding: 5px;
-        background-color:black;
-        color: white;
-    }
-    .cards button{
-        width: 100%;
-        height: 100vh;
-    }
     .waiting-header{
-        background-color: black;
+        background-color: #FF3100;
         color:white;
         margin-bottom: 45vh
     }
-
     .before-joining-game{
         height: 100vh;
         margin-top: 40vh;
@@ -60,16 +53,11 @@ export default {
     .non-mobile-view{
         display: none;
     }
-
     body{
         max-height: 100vh;
         padding: 0%;
         margin: 0%;
         font-size: 25px;
-    }
-    .before-joining-game{
-        height: 100%;
-        width: 100%;
     }
     .hidden{
         display: none;
@@ -86,7 +74,7 @@ export default {
     }
     button{
         width: 90%;
-        background-color:black;
+        background-color:#0293D2;
         color:white;
         border: 1px solid lightgray;
         font-size: 25px;

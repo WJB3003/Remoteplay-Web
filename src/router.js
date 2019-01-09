@@ -24,6 +24,11 @@ export default new Router({
       component: () => import('./views/user/Judge.vue')
     },
     {
+      path: '/wait',
+      name: 'wait',
+      component: () => import('./views/user/Wait.vue')
+    },
+    {
       path: '/player',
       name: 'player',
       component: () => import('./views/user/Player.vue')
@@ -33,10 +38,26 @@ export default new Router({
       name: 'next-round',
       component: () => import('./views/user/NextRound.vue')
     },
+
     {
       path: '/host',
       name: 'host',
       component: () => import('./views/host/Room.vue')
+    },
+    {
+      path: '/host/game/before',
+      name: 'game',
+      component: () => import('./views/host/Game.vue')
+    },
+    {
+      path: '/host/game/after',
+      name: 'game',
+      component: () => import('./views/host/Judging.vue')
+    },
+    {
+      path: '/host/winner',
+      name: 'winner',
+      component: () => import('./views/host/WinnerDisplay.vue')
     }
   ]
 })

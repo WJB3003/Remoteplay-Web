@@ -1,10 +1,10 @@
 <template>
     <div class="during-game-judge">
-        <div class="before-all-cards-submitted hidden">
-            WAITING FOR PEOPLE TO SUBMIT CARDS
-        </div>
         <div class="after-all-cards-submitted">
-            <div class="cards">
+            <div class="header">
+                YOU'RE THE JUDGE
+            </div>
+            <div class="hand">
                 <button>SUBMITTED CARD ONE</button><br>
                 <button>SUBMITTED CARD TWO</button><br>
                 <button>SUBMITTED CARD THREE</button><br>
@@ -36,8 +36,11 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    .display-winner{
-        margin-top: 40vh;
+    .header{
+        background-color: #FFB700;
+        color:white;
+        padding: 5px;
+        margin-bottom: 3vh;
     }
     .before-all-cards-submitted{
         padding: 5px;
@@ -48,12 +51,6 @@ export default {
         width: 100%;
         height: 100vh;
     }
-    .waiting-header{
-        background-color: black;
-        color:white;
-        margin-bottom: 45vh
-    }
-
     .before-joining-game{
         height: 100vh;
         margin-top: 40vh;
@@ -61,16 +58,11 @@ export default {
     .non-mobile-view{
         display: none;
     }
-
     body{
         max-height: 100vh;
         padding: 0%;
         margin: 0%;
         font-size: 25px;
-    }
-    .before-joining-game{
-        height: 100%;
-        width: 100%;
     }
     .hidden{
         display: none;
@@ -79,15 +71,9 @@ export default {
         height: 100%;
         justify-content: space-between;
     }
-    input{
-        text-align: center;
-        width: 90%;
-        font-size: 25px;
-        border: 1px solid lightgray;
-    }
     button{
         width: 90%;
-        background-color:black;
+        background-color:#0293D2;
         color:white;
         border: 1px solid lightgray;
         font-size: 25px;

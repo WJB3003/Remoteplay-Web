@@ -1,14 +1,13 @@
 <template>
-    <div class="display-winner">
-        <div class="header">ROOM CODE: A1B2</div>
-        <button id="next-round">Next Round</button>
+    <div class="waiting-header">
+        WAITING FOR USERS TO SUBMIT CARDS
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'NextRound',
+    name: 'Wait',
     props: {
         msg: String
     },
@@ -27,15 +26,13 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    #next-round{
-        padding: 10px;
-        margin-top: 40vh;
-    }
-    .header{
+    .waiting-header{
         background-color: #FFB700;
         color:white;
-        width: 100%;
-        height: 5%;
+        margin-bottom: 45vh
+    }
+    .non-mobile-view{
+        display: none;
     }
     body{
         max-height: 100vh;
@@ -45,13 +42,6 @@ export default {
     }
     .hidden{
         display: none;
-    }
-    button{
-        width: 90%;
-        background-color: #0293D2;
-        color:white;
-        border: 1px solid lightgray;
-        font-size: 25px;
     }
 }
 </style>

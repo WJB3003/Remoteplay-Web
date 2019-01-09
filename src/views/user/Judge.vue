@@ -1,22 +1,23 @@
 <template>
-  <div class="user-view">
-    <div class="non-mobile-view">
-        PLEASE USE ON A PHONE
-    </div>
-    <div class="mobile-view">
-        <div class="before-joining-game">
-            <input id="room-code" placeholder="Room Code"><br>
-            <input id="username" placeholder="Name"><br>
-            <button>JOIN</button>
+    <div class="during-game-judge">
+        <div class="before-all-cards-submitted hidden">
+            WAITING FOR PEOPLE TO SUBMIT CARDS
+        </div>
+        <div class="after-all-cards-submitted">
+            <div class="cards">
+                <button>SUBMITTED CARD ONE</button><br>
+                <button>SUBMITTED CARD TWO</button><br>
+                <button>SUBMITTED CARD THREE</button><br>
+                <button>SUBMITTED CARD FOUR</button>
+            </div>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Join',
+    name: 'Judge',
     props: {
         msg: String
     },

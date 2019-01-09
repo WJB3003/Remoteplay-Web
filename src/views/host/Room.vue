@@ -7,7 +7,7 @@
     </div>
 
     <!-- PART TWO -->
-    <div class="after-making-room">
+    <div class="after-making-room hidden">
         <div class="room-code-header">
         ROOM CODE:
         <div class="room-code">
@@ -25,37 +25,50 @@
     </div>
     </div>
 
+    <!-- PART THREE -->
     <div class="before-submitted-cards hidden">
     <div class="question-card card">
         This is the body of a card that would need an answer to fill in the blank here ___________.
     </div>
     </div>
 
-        <div class="after-submitted-cards hidden">
-            <div class="displayed-cards">
-                <div class="question-card card">
-                    This is the body of a card that would need an answer to fill in the blank here ___________.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
-                <div class="answer-card card">
-                    This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
-                </div>
+    <!-- PART FOUR -->
+    <div class="after-submitted-cards hidden">
+        <div class="displayed-cards">
+            <div class="question-card card">
+                This is the body of a card that would need an answer to fill in the blank here ___________.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+            </div>
+            <div class="answer-card card">
+                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
             </div>
         </div>
+    </div>
+
+    <!-- PART FIVE -->
+    <div class="display-winner">
+        <div class="winning-prompt room-code-header">
+            THE WINNER IS: 
+        </div>
+        <div class="winner">
+            WILL
+        </div>
+    </div>
+
   </div>
 </template>
 
@@ -112,5 +125,9 @@ export default {
     .displayed-cards{
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .winner{
+        margin-top: 43vh;
     }
 </style>

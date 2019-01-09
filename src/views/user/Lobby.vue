@@ -1,22 +1,16 @@
 <template>
-  <div class="user-view">
-    <div class="non-mobile-view">
-        PLEASE USE ON A PHONE
-    </div>
-    <div class="mobile-view">
-        <div class="before-joining-game">
-            <input id="room-code" placeholder="Room Code"><br>
-            <input id="username" placeholder="Name"><br>
-            <button>JOIN</button>
+    <div class="waiting-to-start-game">
+        <div class="waiting-header">
+            A1B2
         </div>
+        <button>EVERYONE'S IN</button>
     </div>
-  </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Join',
+    name: 'Lobby',
     props: {
         msg: String
     },

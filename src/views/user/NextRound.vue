@@ -1,22 +1,14 @@
 <template>
-  <div class="user-view">
-    <div class="non-mobile-view">
-        PLEASE USE ON A PHONE
+    <!-- PART FIVE -->
+    <div class="display-winner">
+        <button>Next Round</button>
     </div>
-    <div class="mobile-view">
-        <div class="before-joining-game">
-            <input id="room-code" placeholder="Room Code"><br>
-            <input id="username" placeholder="Name"><br>
-            <button>JOIN</button>
-        </div>
-    </div>
-  </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Join',
+    name: 'NextRound',
     props: {
         msg: String
     },

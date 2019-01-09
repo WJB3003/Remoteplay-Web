@@ -1,22 +1,21 @@
 <template>
-  <div class="user-view">
-    <div class="non-mobile-view">
-        PLEASE USE ON A PHONE
-    </div>
-    <div class="mobile-view">
-        <div class="before-joining-game">
-            <input id="room-code" placeholder="Room Code"><br>
-            <input id="username" placeholder="Name"><br>
-            <button>JOIN</button>
+    <div class="during-game-non-judge">
+        <div class="hand">
+            <button>USER CARD ONE</button><br>
+            <button>USER CARD TWO</button><br>
+            <button>USER CARD THREE</button><br>
+            <button>USER CARD FOUR</button><br>
+            <button>USER CARD FIVE</button><br>
+            <button>USER CARD SIX</button><br>
+            <button>USER CARD SEVEN</button>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Join',
+    name: 'Player',
     props: {
         msg: String
     },

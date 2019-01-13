@@ -1,18 +1,9 @@
 <template>
   <div class="host-view">
-
-    <!-- PART ONE -->
-    <div class="pre-making-room hidden">
-    <button>Make Room</button>
-    </div>
-
-    <!-- PART TWO -->
     <div class="after-making-room">
         <div class="room-code-header">
         ROOM CODE:
-        <div class="room-code">
-            A1B2
-        </div>
+        <div class="room-code">{{this.roomCode}}</div>
     </div>
 
     <div class="users">
@@ -23,22 +14,44 @@
             <li>Warren</li>
         </ul>
     </div>
+
+    <button v-on:click="makeRoom">MAKE ROOM</button>
     </div>
 
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
+var roomCode = 'not changed';
 
 export default {
     name: 'Room',
     props: {
         msg: String
     },
+    data: function(){
+        return {
+            roomCode: null
+        }
+    },
+    methods : {
+        makeRoom(){
+            axios.get('http://localhost:8080/create-room').then((response) => {
+                console.log(response.data.code);
+                this.roomCode = response.data.code;
+            })
+        },
+    }
 };
 </script>
 
 <style>
+    .room-code-header{
+        font-weight: bold;
+    }
+
     body{
         margin: 0%;
         font-size: 25px;

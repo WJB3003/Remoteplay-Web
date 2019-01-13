@@ -1,6 +1,6 @@
 <template>
     <div class="waiting-to-start-game">
-        <Header class="header" msg="ROOM CODE: A1B2"/>
+        <Header class="header" msg="ROOM CODE : A1B2"/>
         <button v-on:click="start">EVERYONE'S IN</button>
     </div>
 </template>

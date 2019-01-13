@@ -1,6 +1,6 @@
 <template>
     <div class="display-winner">
-        <div class="header">ROOM CODE: A1B2</div>
+        <div class="header"><b>ROOM CODE: A1B2</b></div>
         <button id="next-round">Next Round</button>
     </div>
 </template>

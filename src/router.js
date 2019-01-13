@@ -46,12 +46,12 @@ export default new Router({
     },
     {
       path: '/host/game/before',
-      name: 'game',
+      name: 'game-before',
       component: () => import('./views/host/Game.vue')
     },
     {
       path: '/host/game/after',
-      name: 'game',
+      name: 'game-after',
       component: () => import('./views/host/Judging.vue')
     },
     {

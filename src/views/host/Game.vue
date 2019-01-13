@@ -1,6 +1,5 @@
 <template>
     <div class="game">
-        <!-- PART THREE -->
         <div class="before-submitted-cards">
             <div class="question-card card">
                 This is the body of a card that would need an answer to fill in the blank here ___________.

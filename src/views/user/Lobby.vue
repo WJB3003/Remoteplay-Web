@@ -1,19 +1,37 @@
 <template>
     <div class="waiting-to-start-game">
-        <div class="waiting-header">
-            ROOM CODE: A1B2
-        </div>
-        <button>EVERYONE'S IN</button>
+        <Header class="header" msg="ROOM CODE: A1B2"/>
+        <button v-on:click="start">EVERYONE'S IN</button>
     </div>
 </template>
 
 <script>
 
+import Header from '@/components/Header.vue';
+import axios from 'axios';
+import router from '@/router.js'
+
 export default {
     name: 'Lobby',
-    props: {
-        msg: String
+    components: {
+        Header,
     },
+    methods: {
+        start(){
+            axios.get(`http://localhost:8080/${this.roomCode}/start-game`).then((response) => {
+                console.log(response.data);
+            })
+            this.navigate();
+        },
+        navigate() {
+            router.push({ name: "player" });
+        }
+    },
+    computed: {
+        roomCode: function() {
+            return this.$store.getters.roomCode;
+        }
+    }
 };
 
 </script>
@@ -52,6 +70,9 @@ export default {
         color:white;
         border: 1px solid lightgray;
         font-size: 25px;
+    }
+    .header{
+        margin-bottom: 40vh;
     }
 }
 </style>

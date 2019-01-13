@@ -1,9 +1,7 @@
 <template>
     <div class="during-game-judge">
         <div class="after-all-cards-submitted">
-            <div class="header">
-                YOU'RE THE JUDGE
-            </div>
+            <Header msg="PICK BEST CARD"/>
             <div class="hand">
                 <button>SUBMITTED CARD ONE</button><br>
                 <button>SUBMITTED CARD TWO</button><br>
@@ -15,11 +13,12 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 
 export default {
     name: 'Judge',
-    props: {
-        msg: String
+    components: {
+        Header
     },
 };
 
@@ -36,12 +35,6 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    .header{
-        background-color: #FFB700;
-        color:white;
-        padding: 5px;
-        margin-bottom: 3vh;
-    }
     .before-all-cards-submitted{
         padding: 5px;
         background-color:black;

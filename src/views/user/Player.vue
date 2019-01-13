@@ -1,16 +1,16 @@
 <template>
     <div class="during-game-non-judge">
         <div class="header">
-            YOUR HAND
+            <b>YOUR HAND</b>
         </div>
         <div class="hand">
-            <button>USER CARD ONE</button><br>
-            <button>USER CARD TWO</button><br>
-            <button>USER CARD THREE</button><br>
-            <button>USER CARD FOUR</button><br>
-            <button>USER CARD FIVE</button><br>
-            <button>USER CARD SIX</button><br>
-            <button>USER CARD SEVEN</button>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
+            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button>
         </div>
     </div>
 </template>
@@ -61,6 +61,7 @@ export default {
         color:white;
         border: 1px solid lightgray;
         font-size: 25px;
+        padding: 10px;
     }
 }
 </style>

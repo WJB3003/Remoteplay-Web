@@ -1,15 +1,18 @@
 <template>
-    <div class="waiting-header">
-        WAITING FOR USERS TO SUBMIT CARDS
-    </div>
+    <Header msg="WAITING FOR USERS"/>
 </template>
 
 <script>
+
+import Header from '@/components/Header.vue';
 
 export default {
     name: 'Wait',
     props: {
         msg: String
+    },
+    components: {
+        Header
     },
 };
 

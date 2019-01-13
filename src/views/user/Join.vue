@@ -4,33 +4,48 @@
         PLEASE USE ON A PHONE
     </div>
     <div class="mobile-view">
+        <Header msg="WELCOME TO REMOTE-PLAY"/>
         <div class="before-joining-game">
-            <form>
-                <input id="room-code" placeholder="Room Code"><br>
-                <input id="username" placeholder="Name"><br>
-                <button v-on:click.prevent="join">JOIN</button>
-            </form>
+            <input v-model="input.roomCode" placeholder="Room Code"><br>
+            <input v-model="input.userName" placeholder="Name"><br>
+            <button v-on:click="join">JOIN</button>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import Header from '@/components/Header.vue';
+import router from '@/router.js';
 
 export default {
+    name: 'Join',
+    components: {
+        Header
+    },
     data(){
         return{
-
+            input: {
+                roomCode: null,
+                userName: null
+            }
         }
     },
     methods: {
-        join: function(){
-            console.log('player added');
-            Vue.http.get('localhost:8080/rooms').then(response => {
-                console.log(response.body);
-            }, response =>{
-                console.log('wrong');
+        join(){
+            axios.post('http://localhost:8080/'+this.input.roomCode+'/players/'+this.input.userName).then((response) => {
+                console.log(response.data);
+            })
+            this.$store.dispatch('setRoomCodeAndUsername', {
+                roomCode: this.input.roomCode
             });
+            this.navigate();
+        },
+        navigate() {
+            router.push({ name: "lobby" });
         }
     }
 };
@@ -48,14 +63,9 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-    .waiting-header{
-        background-color: #FF3100;
-        color:white;
-        margin-bottom: 45vh
-    }
     .before-joining-game{
         height: 100vh;
-        margin-top: 40vh;
+        margin-top: 37vh;
     }
     .non-mobile-view{
         display: none;

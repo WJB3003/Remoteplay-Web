@@ -6,7 +6,13 @@
         <div class="room-code">{{this.roomCode}}</div>
     </div>
 
-    <div class="users"></div>
+    <div class="users">
+        <ul>
+            <template v-for="player in players">
+                {{player}}<br>
+            </template>
+        </ul>
+    </div>
 
     <button v-on:click="makeRoom">MAKE ROOM</button>
 
@@ -20,8 +26,6 @@
 import axios from 'axios';
 import router from '@/router.js';
 
-var roomCode = 'null';
-
 export default {
     name: 'Room',
     props: {
@@ -30,7 +34,8 @@ export default {
     data: function(){
         return {
             roomCode: null,
-            start: false
+            start: false,
+            players: []
         }
     },
     methods : {
@@ -43,8 +48,11 @@ export default {
         },
         gameStarted(){
             axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
-                console.log(response.data);
                 this.start = response.data;
+            })
+            axios.get('http://localhost:8080/'+this.roomCode+'/players').then((response) => {
+                this.players = response.data;
+                console.log(this.players);
             })
             if(this.start) router.push({ name: "game-before" });
         },

@@ -15,9 +15,7 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import axios from 'axios';
-import VueAxios from 'vue-axios';
 import Header from '@/components/Header.vue';
 import router from '@/router.js';
 

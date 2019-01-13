@@ -39,11 +39,6 @@ export default {
             this.checkCards();
             }.bind(this), 1000); 
         }
-    },
-    computed: {
-        roomCode: function() {
-            return this.$store.getters.roomCode;
-        }
     }
 };
 

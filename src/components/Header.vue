@@ -8,7 +8,7 @@
 export default {
   name: 'Header',
   props: {
-    msg: String
+    msg: null
   }
 }
 </script>

@@ -4,17 +4,47 @@
             <div class="question-card card">
                 This is the body of a card that would need an answer to fill in the blank here ___________.
             </div>
+            <button v-on:click="poll">TEMP POLLING BUTTON</button>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+import router from '@/router.js'
 
 export default {
     name: 'Game',
     props: {
         msg: String
     },
+    data: function(){
+        return {
+            allIn: false,
+            roomCode: null
+        }
+    },
+    methods: {
+        checkCards(){
+            axios.get('http://localhost:8080/'+this.roomCode+'/cards').then((response) => {
+                console.log(response.data);
+                this.allIn = response.data;
+            })
+            if(this.allIn) router.push({ name: "game-after" });
+        },
+        poll: function () {
+            this.checkCards();
+
+            setInterval(function () {
+            this.checkCards();
+            }.bind(this), 1000); 
+        }
+    },
+    computed: {
+        roomCode: function() {
+            return this.$store.getters.roomCode;
+        }
+    }
 };
 
 </script>

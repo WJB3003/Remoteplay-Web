@@ -1,7 +1,8 @@
 <template>
     <div class="waiting-to-start-game">
-        <Header class="header" msg="ROOM CODE : A1B2"/>
-        <button v-on:click="start">EVERYONE'S IN</button>
+        <Header class="header" msg="Room Code: "/>
+        <button v-on:click="startGame">EVERYONE'S IN</button>
+        <button v-on:click="ready">TEMP POLLING BUTTON</button>
     </div>
 </template>
 
@@ -16,8 +17,13 @@ export default {
     components: {
         Header,
     },
+    data: function(){
+        return {
+            start: false
+        }
+    },
     methods: {
-        start(){
+        startGame(){
             axios.get(`http://localhost:8080/${this.roomCode}/start-game`).then((response) => {
                 console.log(response.data);
             })
@@ -25,6 +31,20 @@ export default {
         },
         navigate() {
             router.push({ name: "player" });
+        },
+        gameStarted(){
+            axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
+                console.log(response.data);
+                this.start = response.data;
+            })
+            if(this.start) this.navigate();
+        },
+        ready: function () {
+            this.gameStarted();
+
+            setInterval(function () {
+            this.gameStarted();
+            }.bind(this), 1000); 
         }
     },
     computed: {

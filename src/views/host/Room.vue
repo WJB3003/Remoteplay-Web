@@ -6,25 +6,21 @@
         <div class="room-code">{{this.roomCode}}</div>
     </div>
 
-    <div class="users">
-        <ul style="list-style: none;">
-            <li>William</li>
-            <li>Mike</li>
-            <li>Eva</li>
-            <li>Warren</li>
-        </ul>
-    </div>
+    <div class="users"></div>
 
     <button v-on:click="makeRoom">MAKE ROOM</button>
+
     </div>
 
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 
-var roomCode = 'not changed';
+import axios from 'axios';
+import router from '@/router.js';
+
+var roomCode = 'null';
 
 export default {
     name: 'Room',
@@ -33,7 +29,8 @@ export default {
     },
     data: function(){
         return {
-            roomCode: null
+            roomCode: null,
+            start: false
         }
     },
     methods : {
@@ -42,7 +39,20 @@ export default {
                 console.log(response.data.code);
                 this.roomCode = response.data.code;
             })
+            this.ready();
         },
+        gameStarted(){
+            axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
+                console.log(response.data);
+                this.start = response.data;
+            })
+            if(this.start) router.push({ name: "game-before" });
+        },
+        ready: function () {
+            setInterval(function () {
+            this.gameStarted();
+            }.bind(this), 1000); 
+        }
     }
 };
 </script>

@@ -19,6 +19,11 @@ export default new Vuex.Store({
   actions: {
     setRoomCodeAndUsername({commit}, payload) {
       commit('setRoomCode', payload.roomCode)
+      commit('setUsername', payload.username)
+      console.log('roomCode set to: ' + payload.roomCode);
+    },
+    setRoomCode({commit}, payload){
+      commit('setRoomCode', payload.roomCode)
     }
   },
   getters: {

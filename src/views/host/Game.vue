@@ -1,10 +1,7 @@
 <template>
     <div class="game">
         <div class="before-submitted-cards">
-            <div class="question-card card">
-                This is the body of a card that would need an answer to fill in the blank here ___________.
-            </div>
-            <button v-on:click="poll">TEMP POLLING BUTTON</button>
+            <div id="question" class="question-card card">{{this.questionCard}}</div>
         </div>
     </div>
 </template>
@@ -21,16 +18,23 @@ export default {
     data: function(){
         return {
             allIn: false,
-            roomCode: null
+            questionCard: null
         }
+    },
+    created(){
+        this.getQuestion();
+        this.poll();
     },
     methods: {
         checkCards(){
             axios.get('http://localhost:8080/'+this.roomCode+'/cards').then((response) => {
-                console.log(response.data);
-                this.allIn = response.data;
+                
             })
-            if(this.allIn) router.push({ name: "game-after" });
+        },
+        getQuestion(){
+            axios.get('http://localhost:8080/'+this.roomCode+'/get-question').then((response) => {
+                this.questionCard = response.data.content;
+            })
         },
         poll: function () {
             this.checkCards();
@@ -38,6 +42,11 @@ export default {
             setInterval(function () {
             this.checkCards();
             }.bind(this), 1000); 
+        }
+    },
+    computed: {
+        roomCode: function() {
+            return this.$store.getters.roomCode;
         }
     }
 };

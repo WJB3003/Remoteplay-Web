@@ -3,26 +3,64 @@
         <div class="header">
             <b>YOUR HAND</b>
         </div>
-        <div class="hand">
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button><br>
-            <button>This is a body of an answer card that would make the judge think it is clever or fun based on the question card.(user)</button>
-        </div>
+        <div class="users">
+        <ul>
+            <template v-for="card in cards" class="card">
+                <button>{{card.content}}</button>
+            </template>
+        </ul>
+    </div>
     </div>
 </template>
 
 <script>
+
+import axios from 'axios';
+import router from '@/router.js'
 
 export default {
     name: 'Player',
     props: {
         msg: String
     },
-};
+    data: function(){
+        return {
+            cards: [],
+            judge: null
+        }
+    },
+    created(){
+        this.getCards();
+        this.ready();
+    },
+    methods: {
+        getCards(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/'+this.$store.getters.username).then((response) => {
+                this.cards = response.data;
+                console.log(this.cards);
+            })
+        },
+        getJudge(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/judge').then((response) => {
+                this.judge = response.data.name;
+                console.log('judge: ' + this.judge);
+            })
+            if (this.judge == this.$store.getters.username){
+                this.navigate();
+            }
+        },
+        navigate() {
+            router.push({ name: "judge" });
+        },
+        ready: function () {
+            this.getJudge();
+
+            setInterval(function () {
+            this.getJudge();
+            }.bind(this), 100); 
+        }
+    }
+}
 
 </script>
 
@@ -41,7 +79,6 @@ export default {
         background-color: #FFB700;
         color:white;
         padding: 5px;
-        margin-bottom: 3vh;
     }
     .non-mobile-view{
         display: none;
@@ -62,6 +99,9 @@ export default {
         border: 1px solid lightgray;
         font-size: 25px;
         padding: 10px;
+    }
+    ul{
+        padding-left: 0%;
     }
 }
 </style>

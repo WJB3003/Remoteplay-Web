@@ -14,8 +14,6 @@
         </ul>
     </div>
 
-    <button v-on:click="makeRoom">MAKE ROOM</button>
-
     </div>
 
   </div>
@@ -35,13 +33,17 @@ export default {
         return {
             roomCode: null,
             start: false,
-            players: []
+            players: [],
+            polling: null
         }
+    },
+    created(){
+        this.makeRoom();
+        this.ready();
     },
     methods : {
         makeRoom(){
             axios.get('http://localhost:8080/create-room').then((response) => {
-                console.log(response.data.code);
                 this.roomCode = response.data.code;
             })
             this.ready();
@@ -52,14 +54,23 @@ export default {
             })
             axios.get('http://localhost:8080/'+this.roomCode+'/players').then((response) => {
                 this.players = response.data;
-                console.log(this.players);
             })
-            if(this.start) router.push({ name: "game-before" });
+            this.$store.dispatch('setRoomCodeAndUsername', {
+                roomCode: this.roomCode,
+                username: null
+            });
+            if(this.start) {
+                router.push({ name: "game-before" });
+            }
         },
         ready: function () {
-            setInterval(function () {
+            if(!this.start){
+            this.polling = setInterval(function () {
             this.gameStarted();
-            }.bind(this), 1000); 
+            }.bind(this), 3000); 
+            }else{
+                clearInterval(this.polling);
+            }
         }
     }
 };

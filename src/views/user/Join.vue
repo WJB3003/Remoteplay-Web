@@ -38,7 +38,8 @@ export default {
                 console.log(response.data);
             })
             this.$store.dispatch('setRoomCodeAndUsername', {
-                roomCode: this.input.roomCode
+                roomCode: this.input.roomCode,
+                username: this.input.userName
             });
             this.navigate();
         },

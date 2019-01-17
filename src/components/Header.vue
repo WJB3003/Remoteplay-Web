@@ -17,8 +17,6 @@ export default {
 .header-body{
     background-color: #FFB700;
     color: white;
-    padding: 5px;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 </style>

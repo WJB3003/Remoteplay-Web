@@ -45,8 +45,8 @@ export default {
         makeRoom(){
             axios.get('http://localhost:8080/create-room').then((response) => {
                 this.roomCode = response.data.code;
+                console.log(this.roomCode);
             })
-            this.ready();
         },
         gameStarted(){
             axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
@@ -60,17 +60,12 @@ export default {
                 username: null
             });
             if(this.start) {
+                clearInterval(this.polling)
                 router.push({ name: "game-before" });
             }
         },
         ready: function () {
-            if(!this.start){
-            this.polling = setInterval(function () {
-            this.gameStarted();
-            }.bind(this), 3000); 
-            }else{
-                clearInterval(this.polling);
-            }
+            this.polling = setInterval(this.gameStarted, 1000);
         }
     }
 };

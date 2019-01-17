@@ -12,9 +12,6 @@ import router from '@/router.js'
 
 export default {
     name: 'Game',
-    props: {
-        msg: String
-    },
     data: function(){
         return {
             allIn: false,
@@ -28,7 +25,6 @@ export default {
     methods: {
         checkCards(){
             axios.get('http://localhost:8080/'+this.roomCode+'/cards').then((response) => {
-                
             })
         },
         getQuestion(){

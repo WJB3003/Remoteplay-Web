@@ -19,7 +19,8 @@ export default {
     data: function(){
         return {
             start: false,
-            judge: null
+            judge: null,
+            polling: null
         }
     },
     created(){
@@ -34,20 +35,17 @@ export default {
         },
         gameStarted(){
             axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
-                console.log(response.data);
+                console.log('game started: '+response.data);
                 this.start = response.data;
             })
             if(this.start) this.navigate();
         },
         navigate() {
+            clearInterval(this.polling);
             router.push({ name: "player" });
         },
         ready: function () {
-            this.gameStarted();
-
-            setInterval(function () {
-            this.gameStarted();
-            }.bind(this), 1000); 
+            this.polling = setInterval(this.gameStarted, 1000); 
         }
     },
     computed: {

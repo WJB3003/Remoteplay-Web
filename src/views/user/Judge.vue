@@ -1,6 +1,9 @@
 <template>
     <div class="during-game-judge">
-        <div class="after-all-cards-submitted">
+        <div class="before-all-cards-submitted">
+            <Header msg="WAITING FOR USERS"/>
+        </div>
+        <div class="after-all-cards-submitted hidden">
             <Header msg="PICK BEST CARD"/>
             <div class="hand">
                 <button>SUBMITTED CARD ONE</button><br>
@@ -36,8 +39,7 @@ export default {
 
 @media only screen and (max-width: 900px) {
     .before-all-cards-submitted{
-        padding: 5px;
-        background-color:black;
+        background-color: #FFB700;
         color: white;
     }
     .cards button{

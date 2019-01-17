@@ -2,6 +2,7 @@
     <div class="game">
         <div class="before-submitted-cards">
             <div id="question" class="question-card card">{{this.questionCard}}</div>
+            <div v-for="card in cards" :key="card.content" class="card">{{card.content}}</div> 
         </div>
     </div>
 </template>
@@ -15,7 +16,11 @@ export default {
     data: function(){
         return {
             allIn: false,
-            questionCard: null
+            questionCard: null,
+            cards: [],
+            cardsIn: false,
+            winner: null,
+            polling: null
         }
     },
     created(){
@@ -23,20 +28,39 @@ export default {
         this.poll();
     },
     methods: {
-        checkCards(){
-            axios.get('http://localhost:8080/'+this.roomCode+'/cards').then((response) => {
-            })
-        },
         getQuestion(){
             axios.get('http://localhost:8080/'+this.roomCode+'/get-question').then((response) => {
                 this.questionCard = response.data.content;
             })
         },
+        getCards(){
+            if(this.cardsIn){
+                axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/show-cards').then((response) => {
+                    console.log(response.data);
+                    this.cards = response.data;
+                })
+            }
+        },
+        getWinner(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+                this.winner = response.data.name;
+            })
+            if(this.winner != null){
+                clearInterval(this.polling);
+                router.push({name: 'winner'});
+            }
+        },
+        cardStatus(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/cards').then((response) => {
+                this.cardsIn = response.data;
+                console.log(this.cardsIn);
+            })
+        },
         poll: function () {
-            this.checkCards();
-
-            setInterval(function () {
-            this.checkCards();
+            this.polling = setInterval(function () {
+            this.cardStatus();
+            this.getCards();
+            this.getWinner();
             }.bind(this), 1000); 
         }
     },
@@ -61,6 +85,8 @@ export default {
         padding:0%;
     }
     .card{
+        background-color: #0293D2;
+        color: white;
         margin: 10px;
         margin-bottom: 5px;
         width: 240px;

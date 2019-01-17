@@ -32,7 +32,8 @@ export default {
             cards: [],
             judge: null,
             content: null,
-            submited: false
+            submited: false,
+            polling: null
         }
     },
     created(){
@@ -42,9 +43,9 @@ export default {
     },
     methods: {
         select: function(e) {
-            this.content = e.target.innerHTML;
-            console.log('selected card is: '+this.content);
             if(!this.submited){
+                this.content = e.target.innerHTML;
+                console.log('selected card is: '+this.content);
                 axios.post('http://localhost:8080/'+this.$store.getters.roomCode+'/'+this.$store.getters.username+'/submit-card/'+this.content).then((response) => {
                     console.log(response.data);
                     this.submited = true;
@@ -63,18 +64,12 @@ export default {
                 console.log('judge: ' + this.judge);
             })
             if (this.judge == this.$store.getters.username){
-                this.navigate();
+                clearInterval(this.polling)
+                router.push({ name: "judge" });
             }
         },
-        navigate() {
-            router.push({ name: "judge" });
-        },
         ready: function () {
-            this.getJudge();
-
-            setInterval(function () {
-            this.getJudge();
-            }.bind(this), 1000); 
+            this.polling = setInterval(function () { this.getJudge();}.bind(this), 2000); 
         }
     }
 }

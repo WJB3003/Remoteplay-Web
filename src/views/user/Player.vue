@@ -20,7 +20,6 @@
 
 import axios from 'axios';
 import router from '@/router.js';
-import Header from '@/components/Header.vue';
 
 export default {
     name: 'Player',
@@ -33,10 +32,12 @@ export default {
             judge: null,
             content: null,
             submited: false,
-            polling: null
+            polling: null,
+            winner: null
         }
     },
     created(){
+        this.winner = null;
         this.getJudge();
         this.getCards();
         this.ready();
@@ -68,8 +69,21 @@ export default {
                 router.push({ name: "judge" });
             }
         },
+        getWinner(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+                this.winner = response.data.name;
+            })
+            if(this.winner != null) {
+                clearInterval(this.polling)
+                router.push({name: 'next-round'});
+            }
+        },
         ready: function () {
-            this.polling = setInterval(function () { this.getJudge();}.bind(this), 2000); 
+            this.polling = setInterval(function () {
+                this.getJudge();
+                console.log('started-round: '+this.$store.getters.next);
+                this.getWinner();
+            }.bind(this), 500); 
         }
     }
 }

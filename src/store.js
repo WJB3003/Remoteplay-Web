@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     roomCode: null,
-    username: null
+    username: null,
+    next: false
   },
   mutations: {
     setRoomCode(state, payload) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setUsername(state, payload) {
       state.username = payload;
+    },
+    setNext(state, payload) {
+      state.next = payload;
     }
   },
   actions: {
@@ -24,6 +28,9 @@ export default new Vuex.Store({
     },
     setRoomCode({commit}, payload){
       commit('setRoomCode', payload.roomCode)
+    },
+    setNext({commit}, payload){
+      commit('setNext', payload.next)
     }
   },
   getters: {
@@ -32,6 +39,9 @@ export default new Vuex.Store({
     },
     username: (state) => {
       return state.username;
+    },
+    next: (state) => {
+      return state.next;
     }
   }
 })

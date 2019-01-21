@@ -43,6 +43,7 @@ export default {
         },
         getWinner(){
             axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+                console.log(response.data);
                 this.winner = response.data.name;
             })
             if(this.winner != null){
@@ -74,6 +75,9 @@ export default {
 </script>
 
 <style>
+    .before-submitted-cards{
+        display: flex;
+    }
     body{
         margin: 0%;
         font-size: 25px;

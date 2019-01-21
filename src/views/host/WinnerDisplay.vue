@@ -6,26 +6,51 @@
         </div>
         <div class="displayed-cards">
             <div class="question-card card">
-                This is the body of a card that would need an answer to fill in the blank here ___________.
+                {{this.question}}
             </div>
 
             <div class="winning-card answer-card card">
-                This is a body of an answer card that would make the judge think it is clever or fun based on the question card.
+                {{this.winningCard}}
             </div>
         </div>
         <div class="winner">
-            WILLIAM
+            {{this.winner}}
         </div>
     </div>
 </template>
 
 <script>
 
+import axios from 'axios';
+
 export default {
     name: 'WinnerDisplay',
-    props: {
-        msg: String
+    data: function(){
+        return {
+            winner: null,
+            winningCard: null,
+            question: null
+        }
     },
+    created(){
+        this.getWinner();
+        this.getQuestion();
+    },
+    methods: {
+        getWinner(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+                console.log(response.data);
+                this.winner = response.data.name;
+                this.winningCard = response.data.submitCard.content;
+            })
+        },
+        getQuestion(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/question').then((response) => {
+                console.log('question: '+response.data);
+                this.question = response.data.content;
+            })
+        }
+    }
 };
 
 </script>

@@ -1,17 +1,50 @@
 <template>
     <div class="display-winner">
-        <div class="header"><b>ROOM CODE: A1B2</b></div>
-        <button id="next-round">Next Round</button>
+        <div class="header"><b>ROOM CODE: {{this.$store.getters.roomCode}}</b></div>
+        <button id="next-round" v-on:click="round">Next Round</button>
     </div>
 </template>
 
 <script>
 
+import axios from 'axios';
+import router from '@/router.js';
+
 export default {
     name: 'NextRound',
-    props: {
-        msg: String
+    data: function(){
+        return {
+            judge: null,
+            polling: null,
+            start: false
+        }
     },
+    created(){
+        this.ready();
+    },
+    methods: {
+        round(){
+            axios.put('http://localhost:8080/'+this.$store.getters.roomCode+'/judge').then((response) => {
+                    console.log(response.data);
+                    this.judge = response.data;
+            })
+            this.start = this.$store.dispatch('setNext', {
+                next: true
+            });
+        },
+        navigate(){
+            if(this.$store.getters.next){
+                clearInterval(this.polling);
+                router.push({name: 'player'});
+            }
+        },
+        ready: function () {
+            this.polling = setInterval(function () { 
+                console.log('started-round: '+this.$store.getters.next);
+                this.navigate();
+            }.bind(this), 500); 
+        }
+    }
 };
 
 </script>
@@ -31,6 +64,7 @@ export default {
         margin-top: 40vh;
     }
     .header{
+        margin: 0%;
         background-color: #FFB700;
         color:white;
         width: 100%;

@@ -38,6 +38,7 @@ export default {
             this.polling = setInterval(function () { 
                 this.cardStatus();
                 this.getCards();
+                this.getWinner();
                 }.bind(this), 2000); 
         },
         getCards(){
@@ -54,13 +55,21 @@ export default {
                 console.log(this.cardsIn);
             })
         },
+        getWinner(){
+            if(this.winner != null){
+                clearInterval(this.polling);
+                router.push({name: 'next-round'});
+            }
+        },
         select: function(e) {
-            this.content = e.target.innerHTML;
-            console.log('selected card is: '+this.content);
-            axios.post('http://localhost:8080/'+this.$store.getters.roomCode+'/judge-pick/'+this.content).then((response) => {
-                console.log('Winner is: '+response.data.name);
-                this.winner = response.data.name;
-            })
+            if(this.winner == null){
+                this.content = e.target.innerHTML;
+                console.log('selected card is: '+this.content);
+                axios.post('http://localhost:8080/'+this.$store.getters.roomCode+'/judge-pick/'+this.content).then((response) => {
+                    console.log('Winner: '+response.data.name);
+                    this.winner = response.data.name;
+                })
+            }
         },
     }
 };

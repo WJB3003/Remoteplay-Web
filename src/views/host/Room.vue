@@ -8,9 +8,7 @@
 
     <div class="users">
         <ul>
-            <template v-for="player in players">
-                {{player}}<br>
-            </template>
+            <div v-for="player in players" :key="player"> {{player}}<br> </div>
         </ul>
     </div>
 
@@ -65,7 +63,9 @@ export default {
             }
         },
         ready: function () {
-            this.polling = setInterval(this.gameStarted, 1000);
+            this.polling = setInterval(function () { 
+                this.gameStarted();
+            }.bind(this), 500); 
         }
     }
 };

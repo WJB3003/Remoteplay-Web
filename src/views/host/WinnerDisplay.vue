@@ -22,6 +22,7 @@
 <script>
 
 import axios from 'axios';
+import router from '@/router.js';
 
 export default {
     name: 'WinnerDisplay',
@@ -29,12 +30,15 @@ export default {
         return {
             winner: null,
             winningCard: null,
-            question: null
+            question: null,
+            polling: null,
+            start: false
         }
     },
     created(){
         this.getWinner();
         this.getQuestion();
+        this.ready();
     },
     methods: {
         getWinner(){
@@ -49,6 +53,24 @@ export default {
                 console.log('question: '+response.data);
                 this.question = response.data.content;
             })
+        },
+        isRound(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/round').then((response) => {
+                console.log(response);
+                this.start = response.data;
+            })
+        },
+        navigate(){
+            if(this.start){
+                clearInterval(this.polling);
+                router.push({name: 'game-before'});
+            }
+        },
+        ready: function () {
+            this.polling = setInterval(function () {
+                this.isRound();
+                this.navigate();
+            }.bind(this), 500); 
         }
     }
 };

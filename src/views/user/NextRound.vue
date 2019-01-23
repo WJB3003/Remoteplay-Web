@@ -25,22 +25,25 @@ export default {
     methods: {
         round(){
             axios.put('http://localhost:8080/'+this.$store.getters.roomCode+'/judge').then((response) => {
-                    console.log(response.data);
-                    this.judge = response.data;
+                console.log('Judge: '+response.data.name);
+                this.judge = response.data.name;
             })
-            this.start = this.$store.dispatch('setNext', {
-                next: true
-            });
+        },
+        isRound(){
+            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/round').then((response) => {
+                console.log(response);
+                this.start = response.data;
+            })
         },
         navigate(){
-            if(this.$store.getters.next){
+            if(this.start){
                 clearInterval(this.polling);
                 router.push({name: 'player'});
             }
         },
         ready: function () {
-            this.polling = setInterval(function () { 
-                console.log('started-round: '+this.$store.getters.next);
+            this.polling = setInterval(function () {
+                this.isRound();
                 this.navigate();
             }.bind(this), 500); 
         }

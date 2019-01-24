@@ -54,6 +54,7 @@ export default {
                     console.log(response.data);
                     this.submited = true;
                 })
+                router.push({name: 'wait'});
             }
         },
         getCards(){

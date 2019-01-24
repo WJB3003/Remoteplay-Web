@@ -24,13 +24,13 @@ export default {
     },
     methods: {
         round(){
-            axios.put('http://localhost:8080/'+this.$store.getters.roomCode+'/judge').then((response) => {
+            axios.put('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/judge').then((response) => {
                 console.log('Judge: '+response.data.name);
                 this.judge = response.data.name;
             })
         },
         isRound(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/round').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/round').then((response) => {
                 console.log(response);
                 this.start = response.data;
             })

@@ -50,20 +50,20 @@ export default {
             if(!this.submited){
                 this.content = e.target.innerHTML;
                 console.log('selected card is: '+this.content);
-                axios.post('http://localhost:8080/'+this.$store.getters.roomCode+'/'+this.$store.getters.username+'/submit-card/'+this.content).then((response) => {
+                axios.post('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/'+this.$store.getters.username+'/submit-card/'+this.content).then((response) => {
                     console.log(response.data);
                     this.submited = true;
                 })
             }
         },
         getCards(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/'+this.$store.getters.username).then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/'+this.$store.getters.username).then((response) => {
                 this.cards = response.data;
                 console.log(this.cards);
             })
         },
         getJudge(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/judge').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/judge').then((response) => {
                 this.judge = response.data.name;
                 console.log('judge: ' + this.judge);
             })
@@ -73,7 +73,7 @@ export default {
             }
         },
         getWinner(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/winner').then((response) => {
                 this.winner = response.data.name;
             })
             if(this.winner != null) {

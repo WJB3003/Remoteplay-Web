@@ -41,16 +41,16 @@ export default {
     },
     methods : {
         makeRoom(){
-            axios.get('http://localhost:8080/create-room').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/create-room').then((response) => {
                 this.roomCode = response.data.code;
                 console.log(this.roomCode);
             })
         },
         gameStarted(){
-            axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.roomCode+'/has-game-started').then((response) => {
                 this.start = response.data;
             })
-            axios.get('http://localhost:8080/'+this.roomCode+'/players').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.roomCode+'/players').then((response) => {
                 this.players = response.data;
             })
             this.$store.dispatch('setRoomCodeAndUsername', {

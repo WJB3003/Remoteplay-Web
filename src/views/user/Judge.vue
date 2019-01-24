@@ -43,14 +43,14 @@ export default {
         },
         getCards(){
             if(this.cardsIn){
-                axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/show-cards').then((response) => {
+                axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/show-cards').then((response) => {
                     console.log(response.data);
                     this.cards = response.data;
                 })
             }
         },
         cardStatus(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/cards').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/cards').then((response) => {
                 this.cardsIn = response.data;
                 console.log(this.cardsIn);
             })
@@ -65,7 +65,7 @@ export default {
             if(this.winner == null){
                 this.content = e.target.innerHTML;
                 console.log('selected card is: '+this.content);
-                axios.post('http://localhost:8080/'+this.$store.getters.roomCode+'/judge-pick/'+this.content).then((response) => {
+                axios.post('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/judge-pick/'+this.content).then((response) => {
                     console.log('Winner: '+response.data.name);
                     this.winner = response.data.name;
                 })

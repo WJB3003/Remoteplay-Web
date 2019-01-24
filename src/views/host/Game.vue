@@ -29,20 +29,20 @@ export default {
     },
     methods: {
         getQuestion(){
-            axios.get('http://localhost:8080/'+this.roomCode+'/get-question').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.roomCode+'/get-question').then((response) => {
                 this.questionCard = response.data.content;
             })
         },
         getCards(){
             if(this.cardsIn){
-                axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/show-cards').then((response) => {
+                axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/show-cards').then((response) => {
                     console.log(response.data);
                     this.cards = response.data;
                 })
             }
         },
         getWinner(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/winner').then((response) => {
                 console.log(response.data);
                 this.winner = response.data.name;
             })
@@ -52,7 +52,7 @@ export default {
             }
         },
         cardStatus(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/cards').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/cards').then((response) => {
                 this.cardsIn = response.data;
                 console.log(this.cardsIn);
             })

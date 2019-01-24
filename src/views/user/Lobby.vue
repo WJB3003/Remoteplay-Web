@@ -28,13 +28,13 @@ export default {
     },
     methods: {
         startGame(){
-            axios.get(`http://localhost:8080/${this.roomCode}/start-game`).then((response) => {
+            axios.get(`https://remote-play.herokuapp.com/${this.roomCode}/start-game`).then((response) => {
                 console.log(response.data);
             })
             this.navigate();
         },
         gameStarted(){
-            axios.get('http://localhost:8080/'+this.roomCode+'/has-game-started').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.roomCode+'/has-game-started').then((response) => {
                 console.log('game started: '+response.data);
                 this.start = response.data;
             })

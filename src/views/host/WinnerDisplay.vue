@@ -41,20 +41,20 @@ export default {
     },
     methods: {
         getWinner(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/winner').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/winner').then((response) => {
                 console.log(response.data);
                 this.winner = response.data.name;
                 this.winningCard = response.data.submitCard.content;
             })
         },
         getQuestion(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/question').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/question').then((response) => {
                 console.log('question: '+response.data);
                 this.question = response.data.content;
             })
         },
         isRound(){
-            axios.get('http://localhost:8080/'+this.$store.getters.roomCode+'/round').then((response) => {
+            axios.get('https://remote-play.herokuapp.com/'+this.$store.getters.roomCode+'/round').then((response) => {
                 console.log(response);
                 this.start = response.data;
             })

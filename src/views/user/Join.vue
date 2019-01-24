@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         join(){
-            axios.post('http://localhost:8080/'+this.input.roomCode+'/players/'+this.input.userName).then((response) => {
+            axios.post('https://remote-play.herokuapp.com/'+this.input.roomCode+'/players/'+this.input.userName).then((response) => {
                 console.log(response.data);
             })
             this.$store.dispatch('setRoomCodeAndUsername', {

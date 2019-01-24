@@ -38,6 +38,9 @@ export default {
     },
     created(){
         this.winner = null;
+        this.judge = null;
+        this.content = null;
+        this.submited = false;
         this.getJudge();
         this.getCards();
         this.ready();

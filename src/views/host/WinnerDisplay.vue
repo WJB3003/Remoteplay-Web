@@ -1,5 +1,4 @@
 <template>
-    <!-- PART FIVE -->
     <div class="display-winner">
         <div class="winning-prompt room-code-header">
             THE WINNER IS: 

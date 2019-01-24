@@ -45,7 +45,9 @@ export default {
             this.navigate();
         },
         navigate() {
-            router.push({ name: "lobby" });
+            if(this.roomCode != null && this.userName != null){
+                router.push({ name: "lobby" });
+            }
         }
     }
 };

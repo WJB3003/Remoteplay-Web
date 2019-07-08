@@ -4,6 +4,8 @@
 
 #### 1. create a host by going to willbrown.fun/host on a screen where everyone in the group can see.
 
+![Host join page](https://i.imgur.com/lBiM3Dt.png)
+
 #### 2. all players connect to willbrown.fun using a mobile device then enter their name and the code from the host screen.
 
 #### 3. once everyone is in press "everyone's in"

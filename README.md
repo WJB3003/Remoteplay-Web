@@ -8,7 +8,15 @@
 
 #### 2. all players connect to willbrown.fun using a mobile device then enter their name and the code from the host screen.
 
-#### 3. once everyone is in press "everyone's in"
+![Phone entering details](https://i.imgur.com/MMQ23ne.png)
+
+### 3. once you join you should see your name on the shared screen
+
+![Host name screen](https://i.imgur.com/lGWSmAY.png)
+
+#### 4. once everyone is in press "everyone's in"
+
+![Phone everyone's in](https://i.imgur.com/BbiYFRU.png)
 
 ## How to Play
 

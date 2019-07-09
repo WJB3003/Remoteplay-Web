@@ -6,11 +6,11 @@
 
 ![Host join page](https://i.imgur.com/lBiM3Dt.png)
 
-#### 2. all players connect to willbrown.fun using a mobile device then enter their name and the code from the host screen.
+#### 2. all players connect to willbrown.fun using a mobile device then enter their name and the code from the host screen then press "JOIN".
 
 ![Phone entering details](https://i.imgur.com/MMQ23ne.png?1)
 
-### 3. once you join you should see your name on the shared screen
+#### 3. when you join you should see your name on the shared screen
 
 ![Host name screen](https://i.imgur.com/lGWSmAY.png)
 
